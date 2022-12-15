@@ -7,8 +7,8 @@ const DashboardLayout = () => {
   return (
     <>
       <main className='w-full h-screen flex bg-[#f9f9f9]'>
-          <div className='w-[20%] bg-[#fff] py-10 flex flex-col items-center'>
-                <div>
+          <div className='w-[15%] bg-[#fff] py-10 px-5 inline-flex flex-col items-center'>
+                <div className='mb-[2rem]'>
                 <Logo/>
                     <p className='font-[600] '>MI ^_^ MI</p>
                    
@@ -26,7 +26,7 @@ const DashboardLayout = () => {
                     }
                 </div>
           </div>
-           <div className='w-[%70]'></div>       
+           <div className='w-[%75]'></div>       
            <div className='w-[%10]'></div>    
       </main>
     </>

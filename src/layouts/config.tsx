@@ -1,7 +1,9 @@
-export const navConfig=[
+import Bar from "../assets/icons/Bar"
+
+export const navConfig: any = [
     {
         title: "Dashboard",
-        icon: "bi-gear-fill",
+        icon: <div className="w-[20px]"><Bar /></div>,
         link: ""
     },
     {
