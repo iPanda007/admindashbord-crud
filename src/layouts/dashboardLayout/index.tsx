@@ -19,7 +19,8 @@ const DashboardLayout = () => {
                     {
                         navConfig.map((item:any ,index:number)=>(
                           <SidebarSubItem
-                             key={index}
+                            key={index}
+                            index={index}
                              item={item}
                           />
                         ))

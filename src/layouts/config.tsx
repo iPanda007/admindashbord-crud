@@ -1,4 +1,5 @@
 import Bar from "../assets/icons/Bar"
+import Edu from "../assets/icons/Edu"
 
 export const navConfig: any = [
     {
@@ -8,11 +9,11 @@ export const navConfig: any = [
     },
     {
         title: "Education",
-        icon: "bi-gear-fill",
+        icon:  <div className="w-[20px]"><Edu/></div>,
         link: ""
     },
     {
-        title: "Dashboard",
+        title: "Resources",
         icon: "bi-gear-fill",
         childrens: [
              {
@@ -20,6 +21,17 @@ export const navConfig: any = [
                  icon : "",
                  link : "",
             },
+               {
+                title:"navProduct",
+                 icon : "",
+                 link : "",
+            },
+                     {
+                title:"navProduct",
+                 icon : "",
+                 link : "",
+            },
+
 
         ]
     },
