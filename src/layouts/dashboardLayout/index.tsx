@@ -4,6 +4,15 @@ import NotificationIcon from '../../assets/icons/NotificationIcon'
 import Search from '../../assets/icons/Search'
 import SidebarSubItem from '../components/SidebarSubItem'
 import { navConfig } from '../config'
+import { createRipples } from 'react-ripples'
+import MyRipple from '../../utils/MyRipple'
+
+const MyRipples = createRipples({
+  color: '#ffffff15',
+  during: 2200,
+})
+
+
 
 const DashboardLayout = () => {
   return (
@@ -36,17 +45,23 @@ const DashboardLayout = () => {
               <p className='mt-1 text-[#aeaeae]'>Welcome , Annette!</p>
             </div>
             <div className='flex items-center space-x-3' >
-              <span className='px-2 p-2 border rounded-[0.25rem]'>
-                  <Search/>
-              </span>
-              <span className='px-2 py-2 border rounded-[0.25rem]'>
-                   <span className='bg-red inline-flex w-1 h-1 rounded-full'></span>
-                  <NotificationIcon/>
-              </span>
-              
-              <button className='px-4 py-2  bg-[#000] rounded-[0.25rem] text-white text-default '>
+              <MyRipple>
+                <span className='px-2 p-2 border rounded-[0.25rem]'>
+                  <Search />
+                </span>
+              </MyRipple>
+              <MyRipple>
+                <span className='px-2 py-2 border rounded-[0.25rem] relative'>
+                  <span className=' bg-[#ff0000] inline-block w-1 h-1 rounded-full absolute top-2 right-[10px] '></span>
+                  <NotificationIcon />
+                </span>
+              </MyRipple>
+
+              <MyRipples>
+                <button className='px-4 py-2  bg-[#000] rounded-[0.25rem] text-white text-default '>
                   +Add New
-              </button>
+                </button>
+              </MyRipples>
 
             </div>
           </div>

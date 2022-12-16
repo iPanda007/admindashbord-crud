@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-
 interface Props {
   title: string,
   item: any,
@@ -21,7 +20,7 @@ const SubNav = ({ item, title,icon }: Props) => {
           () => setToggle(!toggle)
         }
       >
-        <p className=' px-4 py-[0.6rem]  flex  text-default font-[500] '>
+        <p className=' px-4 py-[0.6rem]   flex  text-default font-[500] '>
           <div className='mr-2'>
               {icon}
           </div>
