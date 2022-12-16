@@ -14,7 +14,7 @@ const SidebarSubItem = ({item,index}:Props) => {
          !item.childrens ? (
              <>
             <Link to={""}>
-              <p  className={` px-4 py-2 ${index }  flex s text-default mb-[1rem] font-[500] `}>
+              <p  className={` px-4 py-[0.6rem] ${index }  flex s text-default mb-[0.7rem] font-[500] `}>
                 <div className='mr-2'> {item.icon}</div>
                 {item.title}
               </p>
@@ -23,6 +23,7 @@ const SidebarSubItem = ({item,index}:Props) => {
             <SubNav
               item = {item.childrens}
               title={item.title}
+              icon = {item.icon}
             />
          </>)
       }
