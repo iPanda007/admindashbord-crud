@@ -2,6 +2,7 @@ import React from 'react'
 import Logo from '../../assets/icons/Logo'
 import NotificationIcon from '../../assets/icons/NotificationIcon'
 import Search from '../../assets/icons/Search'
+import { Outlet } from 'react-router-dom'
 import SidebarSubItem from '../components/SidebarSubItem'
 import { navConfig } from '../config'
 import { createRipples } from 'react-ripples'
@@ -66,9 +67,12 @@ const DashboardLayout = () => {
             </div>
           </div>
 
+          <div className='py-5 w-full text-right'>
+              
+          </div>
         </div>
         <div className='w-[5%]'>
-
+              <Outlet/>
         </div>
       </main>
     </>

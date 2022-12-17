@@ -19,7 +19,7 @@ export const navConfig: any = [
         childrens: [
              {
                 title:"navProduct",
-                 icon : <div className="w-1 h-1 "></div>,
+                 icon : "",
                  link : "",
             },
                {
