@@ -11,14 +11,24 @@ const SubNav = ({ item, title,icon }: Props) => {
 
   const [toggle, setToggle] = useState<boolean>(!!'')
 
-  console.log(toggle)
+
+  const handleClose = () => {
+    setTimeout(() => {
+      setToggle(false);
+    }, 200);
+  };
 
   return (
     <div className='cursor-pointer'>
       <div
         onClick={
-          () => setToggle(!toggle)
+          () => {
+            setToggle(!toggle)
+         
+          }
+        
         }
+    
       >
         <p className=' px-4 py-[0.6rem]   flex  text-default font-[500] '>
           <div className='mr-2'>
@@ -32,7 +42,9 @@ const SubNav = ({ item, title,icon }: Props) => {
           let count = index + 1
           let delay = count / 10
           return (
-            <div key={index} style={{ transitionDelay: " " + count / 10 && delay + "s" }} className={` h-0 overflow-hidden  transition-all duration-300 ease-in-out opacity-0   ${toggle  && "pl-[2rem] h-[38px] opacity-100"}`}>
+            <div
+        
+              key={index} style={{ transitionDelay: " " + count / 10 && delay + "s" }} className={`  overflow-hidden  transition-all duration-300 ease-in-out    ${toggle ? "pl-[2rem] h-[38px] opacity-100" : " opacity-0 h-0 pl-0 "}`}>
               <Link to={""}>
                 <p style={{ transitionDelay: " " + count / 10 && delay + "s" }} className={`  overflow-hidden   flex  text-default font-[500] transition-all duration-300 ease-in-out h-[35px] px-4 py-[0.6rem] `}>
                   <div className='mr-2'> {child.icon}</div>
