@@ -6,12 +6,12 @@ export const navConfig: any = [
     {
         title: "Dashboard",
         icon: <div className="w-[20px]"><Bar /></div>,
-        link: ""
+        link: "/dashboard"
     },
     {
         title: "Education",
         icon: <div className="w-[20px]"><Edu /></div>,
-        link: ""
+        link: "/dashboard/education"
     },
     {
         title: "Resources",

@@ -67,12 +67,12 @@ const DashboardLayout = () => {
             </div>
           </div>
 
-          <div className='py-5 w-full text-right'>
-              
+          <div className='py-5 w-full   '>
+            <Outlet />
           </div>
         </div>
         <div className='w-[5%]'>
-              <Outlet/>
+
         </div>
       </main>
     </>

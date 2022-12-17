@@ -1,11 +1,12 @@
 import React from 'react'
+import Admin from './Admin'
 
-const index = () => {
+const Routes = () => {
   return (
     <div>
-      
+        <Admin/>
     </div>
   )
 }
 
-export default index
+export default Routes

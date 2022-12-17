@@ -19,10 +19,12 @@ const SidebarSubItem = ({ item, index }: Props) => {
               
             <div className=' mb-[1rem] cursor-pointer'>
               <MyRipple>
-                <p className={` px-4 py-[0.6rem]   w-[190px] flex overflow-hidden  text-default  font-[500] `}>
-                  <div className='mr-2'> {item.icon}</div>
-                  {item.title}
-                </p>
+                <Link to={item.link}>
+                  <p className={` px-4 py-[0.6rem]   w-[190px] flex overflow-hidden  text-default  font-[500] `}>
+                    <div className='mr-2'> {item.icon}</div>
+                    {item.title}
+                  </p>
+                </Link>
 
               </MyRipple>
             </div>
