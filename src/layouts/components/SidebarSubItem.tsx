@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useLocation } from 'react-router-dom'
 import SubNav from './SubNav'
 import MyRipple from '../../utils/MyRipple'
+
 
 interface Props {
   item: any,
@@ -9,6 +10,9 @@ interface Props {
 }
 
 const SidebarSubItem = ({ item, index }: Props) => {
+
+  const location = useLocation();
+
   return (
     <div className=''>
       {
@@ -20,7 +24,7 @@ const SidebarSubItem = ({ item, index }: Props) => {
             <div className=' mb-[1rem] cursor-pointer'>
               <MyRipple>
                 <Link to={item.link}>
-                  <p className={` px-4 py-[0.6rem]   w-[190px] flex overflow-hidden  text-default  font-[500] `}>
+                  <p className={` px-4 py-[0.6rem] ${item.link === location.pathname && "bg-[#EEE6E2]"} w-[190px] flex overflow-hidden  text-default  font-[500] `}>
                     <div className='mr-2'> {item.icon}</div>
                     {item.title}
                   </p>
