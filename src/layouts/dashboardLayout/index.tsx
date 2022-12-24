@@ -8,6 +8,7 @@ import { navConfig } from '../config'
 import { createRipples } from 'react-ripples'
 import MyRipple from '../../utils/MyRipple'
 import Localization from '../../utils/Localization'
+import { useLocales } from '../../locals'
 
 const MyRipples = createRipples({
   color: '#ffffff15',
@@ -17,6 +18,9 @@ const MyRipples = createRipples({
 
 
 const DashboardLayout = () => {
+
+  const { currentLang } = useLocales();
+
   return (
     <>
       <main className='w-full h-screen flex bg-[#f9f9f9]'>
@@ -44,7 +48,12 @@ const DashboardLayout = () => {
               <p className='mt-1 text-[#aeaeae]'>Welcome , Annette!</p>
             </div>
             <div className='flex items-center space-x-3' >
-              <Localization/>
+              <div className='w-10 h-10 relative'>
+                <img src={currentLang.icon} className="w-[100%] h-[100%] " alt="" />
+                <div className='bg-white w-full absolute'>
+                  <Localization />
+                </div>
+              </div>
               <MyRipple>
                 <span className='px-2 p-2 border rounded-[0.25rem]'>
                   <Search />

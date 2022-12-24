@@ -1,13 +1,17 @@
 import React, { Children } from 'react'
 import { Navigate, useRoutes } from "react-router-dom";
-import DashboardLayout from '../layouts/dashboardLayout';
-import { Dashboard } from '../pages/Dashboard';
-import { Education } from '../pages/Education';
+
+
+
+
+import { DashboardLayout, Dashboard, Education } from './Element';
+
+
 const Admin = () => {
     return useRoutes([
         {
             path: "/",
-            element : <Navigate to="dashboard"  />
+            element: <Navigate to="dashboard" />
         },
         {
             path: "dashboard",
@@ -15,17 +19,17 @@ const Admin = () => {
             children: [
                 {
                     path: "",
-                    element:<Dashboard/>,
-                    
+                    element: <Dashboard />,
+
                 },
                 {
                     path: "education",
-                    element: <Education/>,
-                
+                    element: <Education />,
+
                 },
             ]
         }
-  ])
+    ])
 }
 
 export default Admin
