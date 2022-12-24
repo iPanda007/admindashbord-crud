@@ -13,7 +13,24 @@ if (typeof window !== "undefined") {
     lng = localStorage.getItem("i18nextLng") || defaultLang.value
 }
 
-i18n.use(LanguageDetector)
+i18n
+    .use(LanguageDetector)
+    .use(initReactI18next)
+    .init({
+        resources: {
+            em: { translations: enLocales },
+            mm: { translations: mmLocales }
+        },
+        lng,
+        fallbackLng: defaultLang.value,
+        debug: false,
+        ns: ["translations"],
+        defaultNS: "translations",
+        interpolation: {
+            escapeValue: false,
+        },
+    });
+    export default i18n
 
 
 
