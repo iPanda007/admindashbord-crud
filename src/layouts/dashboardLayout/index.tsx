@@ -7,6 +7,7 @@ import SidebarSubItem from '../components/SidebarSubItem'
 import { navConfig } from '../config'
 import { createRipples } from 'react-ripples'
 import MyRipple from '../../utils/MyRipple'
+import Localization from '../../utils/Localization'
 
 const MyRipples = createRipples({
   color: '#ffffff15',
@@ -23,9 +24,6 @@ const DashboardLayout = () => {
           <div className='mb-[2rem]'>
             <Logo />
             <p className='font-[600] '>MI ^_^ MI</p>
-
-
-
           </div>
           <div>
             {
@@ -46,6 +44,7 @@ const DashboardLayout = () => {
               <p className='mt-1 text-[#aeaeae]'>Welcome , Annette!</p>
             </div>
             <div className='flex items-center space-x-3' >
+              <Localization/>
               <MyRipple>
                 <span className='px-2 p-2 border rounded-[0.25rem]'>
                   <Search />
