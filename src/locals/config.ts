@@ -11,7 +11,7 @@ export const allLangs = [
     },
     {
         label: "myanmar",
-        value: "en",
+        value: "mm",
         icon: myanmar
     },
 ]
