@@ -7,7 +7,14 @@ export default function useLocales() {
 
     const currentLang = allLangs.find((_lang) => _lang.value === langStorage) || defaultLang;
 
-    const handleChangeLanguage = (newLang:string) => {
-        
+    const handleChangeLanguage = (newLang: string) => {
+        i18n.changeLanguage(newLang);
+    };
+
+    return {
+        onChangeLang: handleChangeLanguage,
+        translate: (text: any, options?: any) => translate(text, options),
+        currentLang,
+        allLangs, 
     }
 }
