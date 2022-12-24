@@ -19,7 +19,7 @@ export default function useLocales() {
 	const handleChangeLanguage = (newlang: string) => {
 		// i18n.changeLanguage(newlang);
         i18n.changeLanguage(newlang)
-        console.log(translate)
+        console.log(akk)
 	};
 
 	return {
