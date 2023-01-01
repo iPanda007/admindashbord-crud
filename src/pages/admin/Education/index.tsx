@@ -97,15 +97,22 @@ const dummpyData = [
 const Education = () => {
   const [data, setData] = useState<IDummpyData[]>(dummpyData);
   const [popupOpen, setPopupOpen] = useState<string>("");
+  const [modelOpen ,setModelOpen] =useState<boolean>(!!'');
 
   const CarryData = (getData:any):void=>{
     setData([...data,getData])
   }
 
+  const handleCloseModal = ():void=>{
+    setModelOpen(!!'')
+  }
+
   return (
     <>
       <PatientCreate
+        modelOpen ={modelOpen}
         CarryData={CarryData}
+        handalCloseModal={handleCloseModal}
       />    
       <div className=" font-[600] mt-[2rem]">
         <header></header>
@@ -128,7 +135,11 @@ const Education = () => {
             </div>
             <div className="overflow-hidden">
               <MyRipples>
-                <button className="px-3 py-1 bg-[#54bab9] text-white  flex space-x-2 font-[400] text-[12px] rounded-full">
+                <button 
+                 onClick={()=>{
+                   setModelOpen(true)
+                 }}
+                className="px-3 py-1 bg-[#54bab9] text-white  flex space-x-2 font-[400] text-[12px] rounded-full">
                   <span className="mr-1 text-[]">+</span> Add new patient
                 </button>
               </MyRipples>
