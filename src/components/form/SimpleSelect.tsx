@@ -11,7 +11,7 @@ const SimpleSelect = ({ register, label, errors, options }: Props) => {
   return (
     <div>
       <label
-        className={`text-default  block mb-[2px] ${
+        className={`text-default  block ${
           errors ? "text-[#ff0000]" : "opacity-50"
         }`}
       >

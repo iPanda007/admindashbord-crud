@@ -1,5 +1,5 @@
 import React from "react";
-
+import uuid from "react-uuid";
 import { useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,35 +9,71 @@ import SimpleSelect from "../../components/form/SimpleSelect";
 import RadioField from "../../components/form/RadioField";
 import DateField from "../../components/form/DateField";
 
+const StatusData = ["one","two","three"]
+
 const schema = yup.object().shape({
   petName: yup.string().required("Pet Name is required"),
-  status:yup.string().required('Status is required'),
-  pawrent:yup.string().required('Status is required'),
-  breed:yup.string().required('Breed is required'),
-  gender:yup.string().required('Gender is required'),
-  date:yup.date().required('Date is required')
-
+  status: yup.string().required("Status is required"),
+  pawrent: yup.string().required("Status is required"),
+  breed: yup.string().required("Breed is required"),
+  gender: yup.string(),
+  date: yup.string().required("Date is required"),
+  contact: yup.string().required("Contact is required"),
+  address: yup.string().required("Address is required"),
 });
 
-const PatientCreate = () => {
+interface Props{
+  CarryData: any
+}
+
+const PatientCreate = ({
+  CarryData
+}:Props) => {
   const {
     handleSubmit,
     register,
+    watch,
+    setError,
     formState: { errors },
   } = useForm<any>({
     resolver: yupResolver(schema),
-
   });
+
+  const GenderChoice = watch("gender");
+  console.log(GenderChoice);
+  const sumbitHandler = (data: any) => {
+    if (GenderChoice === "undefined" || GenderChoice === "null") {
+      setError("gender", {
+        type:"custom",
+        message:"Gender is required"
+      });
+    }
+  const setData ={
+    id: uuid().substring(0,4),
+    petName: data.petName,
+    status: data.status,
+    pawrent: data.pawrent,
+    bread: data.breed,
+    gender: data.gender,
+    dateOfBirth:data.date,
+    contact: data.contact,
+    address: data.address,
+  }
+  CarryData(setData)
+  };
   return (
     <div className="bg-[#00000040] w-full h-screen flex items-center justify-center absolute top-0 left-0 z-40">
-      <div className="bg-white w-[650px] h-[500px] px-10">
+      <div className="bg-white w-[650px] h-auto px-10 py-4">
         <div className=" text-center mb-4">
           <h1 className="text-[#54bab9] text-lg font-[500]">Add New patient</h1>
-          <p className="text-[13px] text-[#343434]">
+          <p className="text-[13px] text-[#a2a2a2]">
             Enter new Patient information below
           </p>
         </div>
-        <form className="grid grid-cols-2 gap-5">
+        <form
+          onSubmit={handleSubmit(sumbitHandler)}
+          className="grid grid-cols-2 gap-5 "
+        >
           <div>
             <TextField
               register={{ ...register("petName") }}
@@ -47,37 +83,72 @@ const PatientCreate = () => {
             />
           </div>
           <div>
-            <SimpleSelect label="Status" register={{...register('status')}} errors={errors?.status?.message} />
-          </div>
-          <div>
-             <TextField
-              register={{...register('pawrent')}}
-              label = "Pawrent"
-              errors={errors?.pawrent}
-              errorsMessage = {errors?.pawrent?.message}
-             />
-          </div>
-          <div>
             <SimpleSelect
-             label="Breed"
-             register={{...register('breed')}}
-             errors={errors?.breed?.message}
-
+              label="Status"
+              register={{ ...register("status") }}
+              errors={errors?.status?.message}
+              options={StatusData}
             />
           </div>
           <div>
-             <RadioField
-              label="Gender"
-              register={{...register('gender')}}
-              errors={errors?.gender?.message}
-             />
+            <TextField
+              register={{ ...register("pawrent") }}
+              label="Pawrent"
+              errors={errors?.pawrent}
+              errorsMessage={errors?.pawrent?.message}
+            />
           </div>
           <div>
-                <DateField
-                 label={"Date of Birth"}
-                 register={{...register('date')}}
-                 errors={errors?.date?.message}
-                />
+            <SimpleSelect
+              label="Breed"
+              register={{ ...register("breed") }}
+              errors={errors?.breed?.message}
+              options={StatusData}
+            />
+          </div>
+          <div>
+            <RadioField
+              label="Gender"
+              register={{ ...register("gender") }}
+              errors={errors?.gender?.message}
+            />
+          </div>
+          <div>
+            <DateField
+              label={"Date of Birth"}
+              register={{ ...register("date") }}
+              errors={errors?.date?.message}
+            
+            />
+          </div>
+          <div>
+            <TextField
+              label={"Contact Phone No"}
+              register={{ ...register("contact") }}
+              errors={errors?.contact}
+              errorsMessage={errors?.contact?.message}
+            />
+          </div>
+          <div>
+            <TextField
+              label={"Address"}
+              register={{ ...register("address") }}
+              errors={errors?.address}
+              errorsMessage={errors?.address?.message}
+            />
+          </div>
+          <div className="col-span-2">
+            <div className="flex justify-center items-center space-x-3">
+              <button
+                className="px-12 py-2 bg-[#54bab9] rounded-[0.25rem]"
+                type="submit"
+              >
+                Save
+              </button>
+              <button className="px-12 py-2 rounded-[0.25rem] border">
+                Cancel
+              </button>
+            </div>
           </div>
         </form>
       </div>

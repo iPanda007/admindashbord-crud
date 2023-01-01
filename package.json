@@ -21,6 +21,7 @@
     "react-redux": "^8.0.5",
     "react-ripples": "^2.2.1",
     "react-router-dom": "^6.4.5",
+    "react-uuid": "^2.0.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {

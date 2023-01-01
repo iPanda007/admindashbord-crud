@@ -98,10 +98,14 @@ const Education = () => {
   const [data, setData] = useState<IDummpyData[]>(dummpyData);
   const [popupOpen, setPopupOpen] = useState<string>("");
 
+  const CarryData = (getData:any):void=>{
+    setData([...data,getData])
+  }
+
   return (
     <>
       <PatientCreate
-        
+        CarryData={CarryData}
       />    
       <div className=" font-[600] mt-[2rem]">
         <header></header>

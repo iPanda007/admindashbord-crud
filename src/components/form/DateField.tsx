@@ -3,9 +3,9 @@ import React from "react";
 const DateField = ({ register, label, errors }: any) => {
   return (
     <div>
-      <div className="mb-[2px]">
+      <div className="">
         <label
-          className={`text-default  block mb-[2px] ${
+          className={`text-default  block ${
             errors ? "text-[#ff0000]" : "opacity-50"
           }`}
         >
