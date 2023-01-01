@@ -7,14 +7,16 @@ import * as yup from "yup";
 import TextField from "../../components/form/TextField";
 import SimpleSelect from "../../components/form/SimpleSelect";
 import RadioField from "../../components/form/RadioField";
+import DateField from "../../components/form/DateField";
 
 const schema = yup.object().shape({
-  petName: yup.string().required("petName is required"),
-  status:yup.string().required('status is required'),
-  pawrent:yup.string().required('status is required'),
-  breed:yup.string().required('breed is required'),
+  petName: yup.string().required("Pet Name is required"),
+  status:yup.string().required('Status is required'),
+  pawrent:yup.string().required('Status is required'),
+  breed:yup.string().required('Breed is required'),
   gender:yup.string().required('Gender is required'),
-  
+  date:yup.date().required('Date is required')
+
 });
 
 const PatientCreate = () => {
@@ -69,6 +71,13 @@ const PatientCreate = () => {
               register={{...register('gender')}}
               errors={errors?.gender?.message}
              />
+          </div>
+          <div>
+                <DateField
+                 label={"Date of Birth"}
+                 register={{...register('date')}}
+                 errors={errors?.date?.message}
+                />
           </div>
         </form>
       </div>
