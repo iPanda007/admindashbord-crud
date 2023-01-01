@@ -3,13 +3,13 @@ import search from "../../../assets/resources/search.png";
 import allergy from "../../../assets/resources/allergy.png";
 import More from "../../../assets/resources/more.png";
 import pickEater from "../../../assets/resources/pick.png";
-import { createRipples } from 'react-ripples'
+import { createRipples } from "react-ripples";
+import Popup from "../../../utils/Popup";
 
 const MyRipples = createRipples({
-  color: '#ffffff15',
+  color: "#ffffff15",
   during: 2200,
-})
-
+});
 
 type IDummpyData = {
   id: string;
@@ -95,6 +95,7 @@ const dummpyData = [
 //54bab9
 const Education = () => {
   const [data, setData] = useState<IDummpyData[]>(dummpyData);
+  const [popupOpen, setPopupOpen] = useState<string>("");
   return (
     <div className=" font-[600] mt-[2rem]">
       <header></header>
@@ -114,7 +115,7 @@ const Education = () => {
             </div>
           </div>
           <div className="overflow-hidden">
-            <MyRipples >
+            <MyRipples>
               <button className="px-3 py-1 bg-[#54bab9] text-white  flex space-x-2 font-[400] text-[12px] rounded-full">
                 <span className="mr-1 text-[]">+</span> Add new patient
               </button>
@@ -203,7 +204,22 @@ const Education = () => {
                   <td>{item.contact}</td>
                   <td>{item.address}</td>
                   <td>
-                    <img src={More} width={15} />
+                    <img
+                      src={More}
+                      width={15}
+                      className="cursor-pointer"
+                      onClick={() => setPopupOpen(item.id)}
+                      onBlur={()=>setPopupOpen('')}
+                      tabIndex={0}
+                    />
+
+                    <Popup
+                      className={
+                        `
+                         flex flex-col absolute top-0 text-[12px] bg-white shadow-lg rounded-[5px]  right-0 z-50  transition-all duration-300  ease-in-out ${
+                        popupOpen === item.id ? "scale-100" : "scale-0"
+                      } `}
+                    />
                   </td>
                 </tr>
               ))}
