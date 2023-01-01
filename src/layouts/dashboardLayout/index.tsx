@@ -8,7 +8,8 @@ import { navConfig } from '../config'
 import { createRipples } from 'react-ripples'
 import MyRipple from '../../utils/MyRipple'
 import Localization from '../../utils/Localization'
-import { useLocales } from '../../locals'
+import { useLocales } from '../../locals';
+
 
 const MyRipples = createRipples({
   color: '#ffffff15',
@@ -51,7 +52,7 @@ const DashboardLayout = () => {
               <div className='w-10 h-10 relative'>
                 <img src={currentLang.icon} className="w-[100%] h-[100%] " alt="" />
                 <div className='bg-white w-full absolute'>
-                  <Localization />
+                
                 </div>
               </div>
               <MyRipple>
