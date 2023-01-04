@@ -266,10 +266,9 @@ const Education = () => {
                     <td
                       className="cursor-pointer"
                       onClick={() => setPopupOpen(item.id)}
-                      
                       onBlurCapture={() => {
                         setTimeout(() => {
-                          setPopupOpen('')
+                          setPopupOpen("");
                         }, 1000);
                       }}
                     >
