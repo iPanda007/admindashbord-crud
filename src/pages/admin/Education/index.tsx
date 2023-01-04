@@ -270,11 +270,7 @@ const Education = () => {
                         className="cursor-pointer"
                         onClick={() => setPopupOpen(item.id)}
                         tabIndex={0}
-                        onBlur={() => {
-                          setTimeout(() => {
-                            setPopupOpen("");
-                          }, 1000);
-                        }}
+                     
                       />
 
                       <Popup
