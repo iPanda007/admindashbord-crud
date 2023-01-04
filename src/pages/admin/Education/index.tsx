@@ -6,6 +6,7 @@ import pickEater from "../../../assets/resources/pick.png";
 import { createRipples } from "react-ripples";
 import Popup from "../../../utils/Popup";
 import PatientCreate from "../../../crud/PatientCrud/PatientCreate";
+import PatientEdit from "../../../crud/PatientCrud/PatientEdit";
 
 const MyRipples = createRipples({
   color: "#ffffff15",
@@ -98,7 +99,7 @@ const Education = () => {
   const [data, setData] = useState<IDummpyData[]>(dummpyData);
   const [popupOpen, setPopupOpen] = useState<string>("");
   const [modelOpen ,setModelOpen] =useState<boolean>(!!'');
-
+ 
   const CarryData = (getData:any):void=>{
     setData([...data,getData])
   }
@@ -106,12 +107,24 @@ const Education = () => {
   const handleCloseModal = ():void=>{
     setModelOpen(!!'')
   }
+  const GetValue = ():void=>{
+     const filterValue = data.find((item:IDummpyData,index:number)=>{
+         
+     })
+  }
+
+
 
   return (
     <>
       <PatientCreate
         modelOpen ={modelOpen}
         CarryData={CarryData}
+        handalCloseModal={handleCloseModal}
+      />
+      <PatientEdit
+        modelOpen={modelOpen}
+        CarryData = {CarryData}
         handalCloseModal={handleCloseModal}
       />    
       <div className=" font-[600] mt-[2rem]">
@@ -242,8 +255,12 @@ const Education = () => {
 
                       <Popup
                          filterDelete={()=>{
-                          
+                            const filterValue = data.filter((value:any ,index:number)=>{
+                                return value.id !== item.id
+                            })
+                            setData(filterValue)
                          }}
+                         fetchValue= {GetValue}                      
                         className={`
                          flex flex-col absolute top-0 text-[12px] bg-white shadow-lg rounded-[5px]  right-0 z-50  transition-all duration-300  ease-in-out ${
                            popupOpen === item.id ? "scale-100" : "scale-0"

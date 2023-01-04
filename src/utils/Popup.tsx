@@ -5,23 +5,32 @@ import MyRipple from "./MyRipple";
 
 interface Props {
   className: any;
-  filterDelete : any
+  filterDelete: any;
+  fetchValue: any;
 }
 
-const Popup = ({ className }: Props) => {
+const Popup = ({ className, filterDelete, fetchValue }: Props) => {
   return (
     <div className={className}>
       <MyRipple>
-        <div className="flex space-x-3 pr-9 pl-2 py-2  cursor-pointer ">
+        <div
+          className="flex space-x-3 pr-9 pl-2 py-2  cursor-pointer "
+          onClick={() => {
+            fetchValue();
+          }}
+        >
           <span>
             <img src={edit} alt="" />
           </span>
           <p>Edit</p>
         </div>
       </MyRipple>
-         <hr />
+      <hr />
       <MyRipple>
-        <div className="flex space-x-3 pr-9 pl-2 py-2 cursor-pointer">
+        <div
+          onClick={filterDelete}
+          className="flex space-x-3 pr-9 pl-2 py-2 cursor-pointer"
+        >
           <span>
             <img src={DeleteIcon} alt="" />
           </span>
