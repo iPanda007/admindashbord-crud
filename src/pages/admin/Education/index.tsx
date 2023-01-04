@@ -13,7 +13,7 @@ const MyRipples = createRipples({
   during: 2200,
 });
 
-type IDummpyData = {
+export type IDummpyData = {
   id: string;
   petName: string;
   status: string;
@@ -94,39 +94,49 @@ const dummpyData = [
   },
 ];
 
-//54bab9
 const Education = () => {
   const [data, setData] = useState<IDummpyData[]>(dummpyData);
   const [popupOpen, setPopupOpen] = useState<string>("");
-  const [modelOpen ,setModelOpen] =useState<boolean>(!!'');
- 
-  const CarryData = (getData:any):void=>{
-    setData([...data,getData])
-  }
+  const [modelOpen, setModelOpen] = useState<boolean>(!!"");
+  const [editValue, setEditValue] = useState<IDummpyData>();
 
-  const handleCloseModal = ():void=>{
-    setModelOpen(!!'')
-  }
-  const GetValue = ():void=>{
-     const filterValue = data.find((item:IDummpyData,index:number)=>{
-         
-     })
-  }
+  const CarryData = (getData: any): void => {
+    setData([...data, getData]);
+  };
 
+  const handleCloseModal = (): void => {
+    setModelOpen(!!"");
+  };
 
+  const EditModalOpen = (): void => {
+    setModelOpen(true);
+  };
+
+  const GetValue = (getData: string): void => {
+    const filterValue = data.find((item: IDummpyData, index: number) => {
+      return getData === item.id;
+    });
+    setEditValue(filterValue);
+    console.log(filterValue);
+  };
+
+  const EditIndex = (getIndex: number): void => {
+       console.log(getIndex)
+  };  
 
   return (
     <>
       <PatientCreate
-        modelOpen ={modelOpen}
+        modelOpen={modelOpen}
         CarryData={CarryData}
         handalCloseModal={handleCloseModal}
       />
       <PatientEdit
+        editValue={editValue}
         modelOpen={modelOpen}
-        CarryData = {CarryData}
+        CarryData={CarryData}
         handalCloseModal={handleCloseModal}
-      />    
+      />
       <div className=" font-[600] mt-[2rem]">
         <header></header>
         <div className="p-4 bg-white w-[100%]">
@@ -148,11 +158,12 @@ const Education = () => {
             </div>
             <div className="overflow-hidden">
               <MyRipples>
-                <button 
-                 onClick={()=>{
-                   setModelOpen(true)
-                 }}
-                className="px-3 py-1 bg-[#54bab9] text-white  flex space-x-2 font-[400] text-[12px] rounded-full">
+                <button
+                  onClick={() => {
+                    setModelOpen(true);
+                  }}
+                  className="px-3 py-1 bg-[#54bab9] text-white  flex space-x-2 font-[400] text-[12px] rounded-full"
+                >
                   <span className="mr-1 text-[]">+</span> Add new patient
                 </button>
               </MyRipples>
@@ -245,22 +256,28 @@ const Education = () => {
                         width={15}
                         className="cursor-pointer"
                         onClick={() => setPopupOpen(item.id)}
-                        onBlurCapture={() => {
-                           setTimeout(()=>{
-                              setPopupOpen('')
-                           },1000)
-                        }}
                         tabIndex={0}
+                        onBlur={() => {
+                          setTimeout(() => {
+                            setPopupOpen("");
+                          }, 1000);
+                        }}
                       />
 
                       <Popup
-                         filterDelete={()=>{
-                            const filterValue = data.filter((value:any ,index:number)=>{
-                                return value.id !== item.id
-                            })
-                            setData(filterValue)
-                         }}
-                         fetchValue= {GetValue}                      
+                        id={item.id}
+                        index={index}
+                        EditIndex={EditIndex}
+                        EditModalOpen={EditModalOpen}
+                        fetchValue={GetValue}
+                        filterDelete={() => {
+                          const filterValue = data.filter(
+                            (value: any, index: number) => {
+                              return value.id !== item.id;
+                            }
+                          );
+                          setData(filterValue);
+                        }}
                         className={`
                          flex flex-col absolute top-0 text-[12px] bg-white shadow-lg rounded-[5px]  right-0 z-50  transition-all duration-300  ease-in-out ${
                            popupOpen === item.id ? "scale-100" : "scale-0"

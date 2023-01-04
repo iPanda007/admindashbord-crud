@@ -6,17 +6,31 @@ import MyRipple from "./MyRipple";
 interface Props {
   className: any;
   filterDelete: any;
-  fetchValue: any;
+  fetchValue: (id: string) => void;
+  EditModalOpen: any;
+  id: string;
+  EditIndex: (index: number) => void;
+  index:number
 }
 
-const Popup = ({ className, filterDelete, fetchValue }: Props) => {
+const Popup = ({
+  className,
+  filterDelete,
+  fetchValue,
+  EditModalOpen,
+  EditIndex,
+  id,
+  index
+}: Props) => {
   return (
     <div className={className}>
       <MyRipple>
         <div
           className="flex space-x-3 pr-9 pl-2 py-2  cursor-pointer "
           onClick={() => {
-            fetchValue();
+            fetchValue(id);
+            EditIndex(index)
+            EditModalOpen();
           }}
         >
           <span>

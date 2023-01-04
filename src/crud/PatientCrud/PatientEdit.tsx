@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import uuid from "react-uuid";
 import { useForm } from "react-hook-form";
 
@@ -8,6 +8,7 @@ import TextField from "../../components/form/TextField";
 import SimpleSelect from "../../components/form/SimpleSelect";
 import RadioField from "../../components/form/RadioField";
 import DateField from "../../components/form/DateField";
+import { IDummpyData } from "../../pages/admin/Education";
 
 const StatusData = ["one","two","three"]
 
@@ -25,13 +26,15 @@ const schema = yup.object().shape({
 interface Props{
   CarryData: any,
   modelOpen: boolean
-  handalCloseModal: any
+  handalCloseModal: any;
+  editValue:any
 }
 
 const PatientEdit = ({
   CarryData,
   modelOpen,
   handalCloseModal,
+  editValue
 }:Props) => {
   const {
     handleSubmit,
@@ -39,13 +42,25 @@ const PatientEdit = ({
     watch,
     setError,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<any>({
     resolver: yupResolver(schema),
   });
 
+  useEffect(()=>{
+     setValue('petName',editValue?.petName);
+
+     setValue('pawrent',editValue?.pawrent);
+     
+     setValue('gender',editValue?.gender);
+     setValue('date',editValue?.dateOfBirth);
+     setValue('contact',editValue?.contact);
+     setValue('address',editValue?.address);
+  },[editValue])
+
   const GenderChoice = watch("gender");
-  console.log(GenderChoice);
+
   const sumbitHandler = (data: any) => {
     if (GenderChoice === "undefined" || GenderChoice === "null") {
       setError("gender", {
@@ -88,6 +103,7 @@ const PatientEdit = ({
               label={"Pet Name"}
               errors={errors?.petName}
               errorsMessage={errors?.petName?.message}
+              defaultValue={editValue}
             />
           </div>
           <div>
