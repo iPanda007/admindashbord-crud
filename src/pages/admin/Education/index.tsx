@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import search from "../../../assets/resources/search.png";
 import allergy from "../../../assets/resources/allergy.png";
 import More from "../../../assets/resources/more.png";
@@ -25,6 +25,7 @@ export type IDummpyData = {
   contact: string;
   address: string;
 };
+
 
 const dummpyData = [
   {
@@ -100,7 +101,9 @@ const Education = () => {
   const [popupOpen, setPopupOpen] = useState<string>("");
   const [modelOpen, setModelOpen] = useState<boolean>(!!"");
   const [editValue, setEditValue] = useState<IDummpyData>();
-  const [dynamicIndex,setDynamicIndex] = useState<any>();
+  const [dynamicIndex, setDynamicIndex] = useState<any>();
+  
+
 
   const CarryData = (getData: any): void => {
     setData([...data, getData]);
@@ -119,24 +122,24 @@ const Education = () => {
       return getData === item.id;
     });
     setEditValue(filterValue);
-
   };
 
   const EditIndex = (getIndex?: number) => {
-      setDynamicIndex(getIndex)
+    setDynamicIndex(getIndex);
   };
 
   const CarryEditData = (editData: IDummpyData): void => {
-    
     setData((prev: IDummpyData[]) => {
-      
-      prev[dynamicIndex]= editData;
+      prev[dynamicIndex] = editData;
       return [...prev];
     });
-
-
   };
 
+ const handleClosePopup = ():void=>{
+     setTimeout(()=>{
+       setPopupOpen('')
+     },1000)
+    }
   return (
     <>
       <PatientCreate
@@ -263,21 +266,15 @@ const Education = () => {
                     <td>{item.dateOfBirth}</td>
                     <td>{item.contact}</td>
                     <td>{item.address}</td>
-                    <td>
-                      <img
-                        src={More}
-                        width={15}
-                        className="cursor-pointer"
-                        onClick={() => setPopupOpen(item.id)}
-                        tabIndex={0}
-                     
-                      />
+                    <td className="cursor-pointer" onClick={() => setPopupOpen(item.id)}>
+                      <img src={More} width={15}  />
 
                       <Popup
                         id={item.id}
                         index={index}
                         EditIndex={EditIndex}
                         EditModalOpen={EditModalOpen}
+                        handleClosePopup={handleClosePopup}
                         fetchValue={GetValue}
                         filterDelete={() => {
                           const filterValue = data.filter(

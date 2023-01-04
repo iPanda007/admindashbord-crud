@@ -10,7 +10,8 @@ interface Props {
   EditModalOpen: any;
   id: string;
   EditIndex: (index: number) => void;
-  index:number
+  index:number;
+  handleClosePopup:()=>void
 }
 
 const Popup = ({
@@ -20,7 +21,8 @@ const Popup = ({
   EditModalOpen,
   EditIndex,
   id,
-  index
+  index,
+  handleClosePopup
 }: Props) => {
   return (
     <div className={className}>
@@ -31,6 +33,7 @@ const Popup = ({
             fetchValue(id);
             EditIndex(index)
             EditModalOpen();
+            handleClosePopup();
           }}
         >
           <span>
@@ -42,7 +45,10 @@ const Popup = ({
       <hr />
       <MyRipple>
         <div
-          onClick={filterDelete}
+          onClick={()=>{
+            filterDelete()
+            handleClosePopup();
+          }}
           className="flex space-x-3 pr-9 pl-2 py-2 cursor-pointer"
         >
           <span>
