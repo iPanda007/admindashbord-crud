@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import search from "../../../assets/resources/search.png";
 import allergy from "../../../assets/resources/allergy.png";
 import More from "../../../assets/resources/more.png";
@@ -25,7 +25,6 @@ export type IDummpyData = {
   contact: string;
   address: string;
 };
-
 
 const dummpyData = [
   {
@@ -102,8 +101,6 @@ const Education = () => {
   const [modelOpen, setModelOpen] = useState<boolean>(!!"");
   const [editValue, setEditValue] = useState<IDummpyData>();
   const [dynamicIndex, setDynamicIndex] = useState<any>();
-  
-
 
   const CarryData = (getData: any): void => {
     setData([...data, getData]);
@@ -135,11 +132,11 @@ const Education = () => {
     });
   };
 
- const handleClosePopup = ():void=>{
-     setTimeout(()=>{
-       setPopupOpen('')
-     },1000)
-    }
+  const handleClosePopup = (): void => {
+    setTimeout(() => {
+      setPopupOpen("");
+    }, 1000);
+  };
   return (
     <>
       <PatientCreate
@@ -266,8 +263,17 @@ const Education = () => {
                     <td>{item.dateOfBirth}</td>
                     <td>{item.contact}</td>
                     <td>{item.address}</td>
-                    <td className="cursor-pointer" onClick={() => setPopupOpen(item.id)}>
-                      <img src={More} width={15}  />
+                    <td
+                      className="cursor-pointer"
+                      onClick={() => setPopupOpen(item.id)}
+                      
+                      onBlurCapture={() => {
+                        setTimeout(() => {
+                          setPopupOpen('')
+                        }, 1000);
+                      }}
+                    >
+                      <img src={More} width={15} />
 
                       <Popup
                         id={item.id}
