@@ -41,7 +41,6 @@ const PatientEdit = ({
     register,
     watch,
     setError,
-    reset,
     setValue,
     formState: { errors },
   } = useForm<any>({

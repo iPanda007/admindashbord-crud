@@ -7,6 +7,7 @@ import { createRipples } from "react-ripples";
 import Popup from "../../../utils/Popup";
 import PatientCreate from "../../../crud/PatientCrud/PatientCreate";
 import PatientEdit from "../../../crud/PatientCrud/PatientEdit";
+import { number } from "yup/lib/locale";
 
 const MyRipples = createRipples({
   color: "#ffffff15",
@@ -120,9 +121,14 @@ const Education = () => {
     console.log(filterValue);
   };
 
-  const EditIndex = (getIndex: number): void => {
-       console.log(getIndex)
-  };  
+  const EditIndex = (getIndex: number): number => {
+        const indexValue = getIndex;
+        return indexValue
+  };
+
+  const CarryEditData = (editData:IDummpyData):void=>{
+        
+  }
 
   return (
     <>
