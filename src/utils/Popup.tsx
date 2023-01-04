@@ -9,7 +9,7 @@ interface Props {
   fetchValue: (id: string) => void;
   EditModalOpen: any;
   id: string;
-  EditIndex: (index: number) => number;
+  EditIndex: (index: number) => void;
   index:number
 }
 

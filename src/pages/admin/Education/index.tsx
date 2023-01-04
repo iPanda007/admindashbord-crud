@@ -96,10 +96,11 @@ const dummpyData = [
 ];
 
 const Education = () => {
-  const [data, setData] = useState<IDummpyData[]>(dummpyData);
+  const [data, setData] = useState<IDummpyData[] | any>(dummpyData);
   const [popupOpen, setPopupOpen] = useState<string>("");
   const [modelOpen, setModelOpen] = useState<boolean>(!!"");
   const [editValue, setEditValue] = useState<IDummpyData>();
+  const [dynamicIndex,setDynamicIndex] = useState<any>();
 
   const CarryData = (getData: any): void => {
     setData([...data, getData]);
@@ -114,21 +115,27 @@ const Education = () => {
   };
 
   const GetValue = (getData: string): void => {
-    const filterValue = data.find((item: IDummpyData, index: number) => {
+    const filterValue = data.find((item: IDummpyData, _index: number) => {
       return getData === item.id;
     });
     setEditValue(filterValue);
-    console.log(filterValue);
+
   };
 
-  const EditIndex = (getIndex: number): number => {
-        const indexValue = getIndex;
-        return indexValue
+  const EditIndex = (getIndex?: number) => {
+      setDynamicIndex(getIndex)
   };
 
-  const CarryEditData = (editData:IDummpyData):void=>{
-        
-  }
+  const CarryEditData = (editData: IDummpyData): void => {
+    
+    setData((prev: IDummpyData[]) => {
+      
+      prev[dynamicIndex]= editData;
+      return [...prev];
+    });
+
+
+  };
 
   return (
     <>
@@ -140,8 +147,8 @@ const Education = () => {
       <PatientEdit
         editValue={editValue}
         modelOpen={modelOpen}
-        CarryData={CarryData}
         handalCloseModal={handleCloseModal}
+        CarryEditData={CarryEditData}
       />
       <div className=" font-[600] mt-[2rem]">
         <header></header>
@@ -278,7 +285,7 @@ const Education = () => {
                         fetchValue={GetValue}
                         filterDelete={() => {
                           const filterValue = data.filter(
-                            (value: any, index: number) => {
+                            (value: any, _index: number) => {
                               return value.id !== item.id;
                             }
                           );
