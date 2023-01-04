@@ -232,11 +232,18 @@ const Education = () => {
                         width={15}
                         className="cursor-pointer"
                         onClick={() => setPopupOpen(item.id)}
-                        onBlur={() => setPopupOpen("")}
+                        onBlurCapture={() => {
+                           setTimeout(()=>{
+                              setPopupOpen('')
+                           },1000)
+                        }}
                         tabIndex={0}
                       />
 
                       <Popup
+                         filterDelete={()=>{
+                          
+                         }}
                         className={`
                          flex flex-col absolute top-0 text-[12px] bg-white shadow-lg rounded-[5px]  right-0 z-50  transition-all duration-300  ease-in-out ${
                            popupOpen === item.id ? "scale-100" : "scale-0"

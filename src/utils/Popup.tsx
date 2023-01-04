@@ -5,6 +5,7 @@ import MyRipple from "./MyRipple";
 
 interface Props {
   className: any;
+  filterDelete : any
 }
 
 const Popup = ({ className }: Props) => {
