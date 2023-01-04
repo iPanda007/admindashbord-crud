@@ -171,7 +171,7 @@ const PatientEdit = ({
                 className="px-12 py-2 bg-[#54bab9] rounded-[0.25rem]"
                 type="submit"
               >
-                Save
+                Update
               </button>
               <div
                 onClick={() => {
