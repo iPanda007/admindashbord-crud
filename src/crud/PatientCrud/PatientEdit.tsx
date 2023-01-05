@@ -24,15 +24,15 @@ const schema = yup.object().shape({
 });
 
 interface Props {
-  modelOpen: boolean;
-  handalCloseModal: any;
+  editModelOpenBox: boolean;
+  handalCloseEditModal: any;
   editValue: any;
   CarryEditData: (data: IDummpyData) => void;
 }
 
 const PatientEdit = ({
-  modelOpen,
-  handalCloseModal,
+  editModelOpenBox,
+  handalCloseEditModal,
   editValue,
   CarryEditData,
 }: Props) => {
@@ -79,17 +79,17 @@ const PatientEdit = ({
       address: data.address,
     };
     CarryEditData(setData)
-    handalCloseModal();
+    handalCloseEditModal();
   };
   return (
     <div
       className={` w-full h-screen duration-300 transition-all ease-in-out flex items-center justify-center absolute top-0 left-0  ${
-        modelOpen ? " bg-[#00000040] z-40 opacity-100" : "-z-10  opacity-100"
+        editModelOpenBox ? " bg-[#00000040] z-40 opacity-100" : "-z-10  opacity-100"
       }`}
     >
       <div
         className={`bg-white w-[650px] h-auto px-10 duration-500 transition-all ease-in-out delay-300 py-4 ${
-          modelOpen ? "scale-100 " : "scale-0"
+          editModelOpenBox ? "scale-100 " : "scale-0"
         }`}
       >
         <div className=" text-center mb-4">
@@ -175,7 +175,7 @@ const PatientEdit = ({
               </button>
               <div
                 onClick={() => {
-                  handalCloseModal();
+                  handalCloseEditModal();
                 }}
                 className="px-12 py-2 rounded-[0.25rem] border cursor-pointer"
               >

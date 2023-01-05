@@ -99,6 +99,7 @@ const Education = () => {
   const [data, setData] = useState<IDummpyData[] | any>(dummpyData);
   const [popupOpen, setPopupOpen] = useState<string>("");
   const [modelOpen, setModelOpen] = useState<boolean>(!!"");
+  const [editModalOpenBox, setEditModalOpenBox] = useState<boolean>(false)
   const [editValue, setEditValue] = useState<IDummpyData>();
   const [dynamicIndex, setDynamicIndex] = useState<any>();
 
@@ -110,8 +111,12 @@ const Education = () => {
     setModelOpen(!!"");
   };
 
+  const handleCloseEditModal = ():void=>{
+       setEditModalOpenBox(false)
+  }
+
   const EditModalOpen = (): void => {
-    setModelOpen(true);
+    setEditModalOpenBox(true);
   };
 
   const GetValue = (getData: string): void => {
@@ -146,8 +151,8 @@ const Education = () => {
       />
       <PatientEdit
         editValue={editValue}
-        modelOpen={modelOpen}
-        handalCloseModal={handleCloseModal}
+        editModelOpenBox={editModalOpenBox}
+        handalCloseEditModal={handleCloseEditModal}
         CarryEditData={CarryEditData}
       />
       <div className=" font-[600] mt-[2rem]">
