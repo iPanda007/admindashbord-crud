@@ -8,6 +8,8 @@ import Popup from "../../../utils/Popup";
 import PatientCreate from "../../../crud/PatientCrud/PatientCreate";
 import PatientEdit from "../../../crud/PatientCrud/PatientEdit";
 import { number } from "yup/lib/locale";
+import usePaginate from "../../../hook/usePaginate";
+import Pagination from "../../../utils/Pagination";
 
 const MyRipples = createRipples({
   color: "#ffffff15",
@@ -93,27 +95,117 @@ const dummpyData = [
     contact: "09966928899",
     address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
   },
+  {
+    id: "B-0025",
+    petName: "Milo",
+    status: allergy,
+    pawrent: "The' Nu San",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "S-0189",
+    petName: "Milo",
+    status: allergy,
+    pawrent: "Nay Chi Lin",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0089",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0090",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Kyaw Myo Oo",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0091",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0092",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
 ];
 
 const Education = () => {
   const [data, setData] = useState<IDummpyData[] | any>(dummpyData);
   const [popupOpen, setPopupOpen] = useState<string>("");
   const [modelOpen, setModelOpen] = useState<boolean>(!!"");
-  const [editModalOpenBox, setEditModalOpenBox] = useState<boolean>(false)
+  const [editModalOpenBox, setEditModalOpenBox] = useState<boolean>(false);
   const [editValue, setEditValue] = useState<IDummpyData>();
   const [dynamicIndex, setDynamicIndex] = useState<any>();
+  const [newItem, setNewItem] = useState<IDummpyData[]>([]);
+  const [selectAllBoolean, setSelectAllBoolean] = useState<boolean>(false);
+
+
+
+    // pagination
+    const {
+      currentRecords,
+      pageNumbers,
+      nextPage,
+      prevPage,
+      currentPage,
+      setCurrentPage,
+    } = usePaginate(data);
+
+
 
   const CarryData = (getData: any): void => {
     setData([...data, getData]);
+  };
+
+  const handleSelectAll = () => {
+    if (selectAllBoolean) {
+      setNewItem(data);
+    } else {
+      setNewItem([]);
+    }
   };
 
   const handleCloseModal = (): void => {
     setModelOpen(!!"");
   };
 
-  const handleCloseEditModal = ():void=>{
-       setEditModalOpenBox(false)
-  }
+  const handleCloseEditModal = (): void => {
+    setEditModalOpenBox(false);
+  };
 
   const EditModalOpen = (): void => {
     setEditModalOpenBox(true);
@@ -142,6 +234,11 @@ const Education = () => {
       setPopupOpen("");
     }, 1000);
   };
+
+  useEffect(() => {
+    handleSelectAll();
+  }, [selectAllBoolean]);
+
   return (
     <>
       <PatientCreate
@@ -156,6 +253,7 @@ const Education = () => {
         CarryEditData={CarryEditData}
       />
       <div className=" font-[600] mt-[2rem]">
+        
         <header></header>
         <div className="p-4 bg-white w-[100%]">
           <h1 className="text-[#54bab9] text-lg font-[500] mb-4">
@@ -228,13 +326,25 @@ const Education = () => {
               </div>
             </div>
           </div>
-
+          <Pagination
+            pageNumbers={pageNumbers}
+            next={nextPage}
+            prev={prevPage}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
           <div className=" border-t mt-4 w-full">
+                  
             <table className="w-full">
               <thead className="text-[#54bab9] text-[13px] text-left font-[500] border-b">
                 <tr className="">
                   <th className="px-4 py-2 text-center">
-                    <input type="checkBox" />
+                    <input
+                      type="checkBox"
+                      onChange={(e) => {
+                        setSelectAllBoolean(e.target.checked);
+                      }}
+                    />
                   </th>
                   <th className="px-3 py-2">ID</th>
                   <th className="px-3 py-2">Pet Name</th>
@@ -249,59 +359,67 @@ const Education = () => {
                 </tr>
               </thead>
               <tbody className=" text-[13px] font-[400]">
-                {data.map((item: any, index: number) => (
-                  <tr
-                    key={index}
-                    className=" border-b h-[36px] align-middle relative  "
-                  >
-                    <td className="text-center">
-                      <input type="checkbox" />
-                    </td>
-                    <td className="text-center">{item.id}</td>
-                    <td className="text-center">{item.petName}</td>
-                    <td className="text-center ">
-                      <img src={item.status} />
-                    </td>
-                    <td>{item.pawrent}</td>
-                    <td>{item.bread}</td>
-                    <td>{item.gender}</td>
-                    <td>{item.dateOfBirth}</td>
-                    <td>{item.contact}</td>
-                    <td>{item.address}</td>
-                    <td
-                      className="cursor-pointer"
-                      onClick={() => setPopupOpen(item.id)}
-                      onBlurCapture={() => {
-                        setTimeout(() => {
-                          setPopupOpen("");
-                        }, 1000);
-                      }}
+                {currentRecords.map((item: any, index: number) => {
+                  const selected = newItem.find((selectVal) => {
+                    return selectVal.id == item.id;
+                  });
+                  console.log(selected);
+                  return (
+                    <tr
+                      key={index}
+                      className=" border-b h-[36px] align-middle relative  "
                     >
-                      <img src={More} width={15} />
-
-                      <Popup
-                        id={item.id}
-                        index={index}
-                        EditIndex={EditIndex}
-                        EditModalOpen={EditModalOpen}
-                        handleClosePopup={handleClosePopup}
-                        fetchValue={GetValue}
-                        filterDelete={() => {
-                          const filterValue = data.filter(
-                            (value: any, _index: number) => {
-                              return value.id !== item.id;
-                            }
-                          );
-                          setData(filterValue);
+                      <td className="text-center">
+                        <input
+                          type="checkbox"
+                          checked={selected === undefined ? false : true}
+                        />
+                      </td>
+                      <td className="text-center">{item.id}</td>
+                      <td className="text-center">{item.petName}</td>
+                      <td className="text-center ">
+                        <img src={item.status} />
+                      </td>
+                      <td>{item.pawrent}</td>
+                      <td>{item.bread}</td>
+                      <td>{item.gender}</td>
+                      <td>{item.dateOfBirth}</td>
+                      <td>{item.contact}</td>
+                      <td>{item.address}</td>
+                      <td
+                        className="cursor-pointer"
+                        onClick={() => setPopupOpen(item.id)}
+                        onBlurCapture={() => {
+                          setTimeout(() => {
+                            setPopupOpen("");
+                          }, 1000);
                         }}
-                        className={`
+                      >
+                        <img src={More} width={15} />
+                        <Popup
+                          id={item.id}
+                          index={index}
+                          EditIndex={EditIndex}
+                          EditModalOpen={EditModalOpen}
+                          handleClosePopup={handleClosePopup}
+                          fetchValue={GetValue}
+                          filterDelete={() => {
+                            const filterValue = data.filter(
+                              (value: any, _index: number) => {
+                                return value.id !== item.id;
+                              }
+                            );
+                            setData(filterValue);
+                          }}
+                          className={`
                          flex flex-col absolute top-0 text-[12px] bg-white shadow-lg rounded-[5px]  right-0 z-50  transition-all duration-300  ease-in-out ${
                            popupOpen === item.id ? "scale-100" : "scale-0"
                          } `}
-                      />
-                    </td>
-                  </tr>
-                ))}
+                        />
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
