@@ -10,6 +10,9 @@ import PatientEdit from "../../../crud/PatientCrud/PatientEdit";
 import { number } from "yup/lib/locale";
 import usePaginate from "../../../hook/usePaginate";
 import Pagination from "../../../utils/Pagination";
+import useAdvencePaginate from "../../../hook/useAdvencePaginate";
+import PaginationAdvance from "../../../utils/PaginationAdvance";
+import { current } from "@reduxjs/toolkit";
 
 const MyRipples = createRipples({
   color: "#ffffff15",
@@ -52,7 +55,7 @@ const dummpyData = [
     address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
   },
   {
-    id: "G-0089",
+    id: "",
     petName: "Milo",
     status: pickEater,
     pawrent: "Pink Pink",
@@ -85,7 +88,7 @@ const dummpyData = [
     address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
   },
   {
-    id: "G-0092",
+    id: "1",
     petName: "Milo",
     status: pickEater,
     pawrent: "Pink Pink",
@@ -161,6 +164,358 @@ const dummpyData = [
     contact: "09966928899",
     address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
   },
+  {
+    id: "B-0025",
+    petName: "Milo",
+    status: allergy,
+    pawrent: "The' Nu San",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "S-0189",
+    petName: "Milo",
+    status: allergy,
+    pawrent: "Nay Chi Lin",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0090",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Kyaw Myo Oo",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0091",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "1",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "B-0025",
+    petName: "Milo",
+    status: allergy,
+    pawrent: "The' Nu San",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "S-0189",
+    petName: "Milo",
+    status: allergy,
+    pawrent: "Nay Chi Lin",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0089",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0090",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Kyaw Myo Oo",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0091",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0091",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "1",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "B-0025",
+    petName: "Milo",
+    status: allergy,
+    pawrent: "The' Nu San",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "S-0189",
+    petName: "Milo",
+    status: allergy,
+    pawrent: "Nay Chi Lin",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0089",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0090",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Kyaw Myo Oo",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0091",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0091",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "1",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "B-0025",
+    petName: "Milo",
+    status: allergy,
+    pawrent: "The' Nu San",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "S-0189",
+    petName: "Milo",
+    status: allergy,
+    pawrent: "Nay Chi Lin",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0089",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0090",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Kyaw Myo Oo",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0091",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0091",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "1",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "B-0025",
+    petName: "Milo",
+    status: allergy,
+    pawrent: "The' Nu San",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "S-0189",
+    petName: "Milo",
+    status: allergy,
+    pawrent: "Nay Chi Lin",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0089",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0090",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Kyaw Myo Oo",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
+  {
+    id: "G-0091",
+    petName: "Milo",
+    status: pickEater,
+    pawrent: "Pink Pink",
+    bread: "Beogle",
+    gender: "Male",
+    dateOfBirth: "1.5.2021",
+    contact: "09966928899",
+    address: "တိုက်(၅) - အခန်း(001) - လိူင်သိရိအိမ်ရာ",
+  },
 ];
 
 const Education = () => {
@@ -176,17 +531,27 @@ const Education = () => {
 
 
     // pagination
+    // const {
+    //   currentRecords,
+    //   pageNumbers,
+    //   nextPage,
+    //   prevPage,
+    //   currentPage,
+    //   setCurrentPage,
+    // } = usePaginate(data);
+
+
     const {
-      currentRecords,
-      pageNumbers,
-      nextPage,
-      prevPage,
       currentPage,
-      setCurrentPage,
-    } = usePaginate(data);
-
-
-
+      goToNextPage,
+      goToPreviousPage,
+      changePage,
+      getPaginatedData,
+      paginationRange,
+      pageNumbersCount,
+      setRecordPerPage, 
+    }=useAdvencePaginate(data);
+  
   const CarryData = (getData: any): void => {
     setData([...data, getData]);
   };
@@ -217,6 +582,7 @@ const Education = () => {
     });
     setEditValue(filterValue);
   };
+  
 
   const EditIndex = (getIndex?: number) => {
     setDynamicIndex(getIndex);
@@ -326,14 +692,22 @@ const Education = () => {
               </div>
             </div>
           </div>
-          <Pagination
+          {/* <Pagination
             pageNumbers={pageNumbers}
             next={nextPage}
             prev={prevPage}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
-          />
-          <div className=" border-t mt-4 w-full">
+          /> */}
+           <PaginationAdvance
+                 currentPage={currentPage}
+                 goToNextPage={goToNextPage}
+                 goToPreviousPage={goToPreviousPage}
+                 changePage={changePage}
+                 paginationRange={paginationRange}
+                 pageNumbersCount={pageNumbersCount}
+           />
+          <div className="border-t mt-4 w-full">
                   
             <table className="w-full">
               <thead className="text-[#54bab9] text-[13px] text-left font-[500] border-b">
@@ -359,7 +733,7 @@ const Education = () => {
                 </tr>
               </thead>
               <tbody className=" text-[13px] font-[400]">
-                {currentRecords.map((item: any, index: number) => {
+                {getPaginatedData()?.map((item: any, index: number) => {
                   const selected = newItem.find((selectVal) => {
                     return selectVal.id == item.id;
                   });
