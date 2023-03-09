@@ -4,7 +4,7 @@ export const DOTS = "...";
 
 const useAdvencePaginate = (data:any) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [recordPerPage, setRecordPerPage] = useState(5);
+  const [recordPerPage, setRecordPerPage] = useState(7);
   const [pageLimit, setPageLimit]: any = useState(5);
   const [siblingCount, setSiblingCount] = useState(1);
   const [buttonCount, setButtonCount] = useState(3);

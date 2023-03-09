@@ -43,7 +43,7 @@ const PatientCreate = ({
   } = useForm<any>({
     resolver: yupResolver(schema),
   });
-
+  
   const GenderChoice = watch("gender");
   console.log(GenderChoice);
   const sumbitHandler = (data: any) => {
